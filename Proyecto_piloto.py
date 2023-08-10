@@ -4,7 +4,7 @@ import json
 import re
 import time
 
-def log():
+def log(): #This is basic logging just part of the Python project but can be removed or changed for a more complex one 
     user_dic = {
         'david':'admin',
         'profe':'admin',
@@ -21,8 +21,8 @@ def log():
             break
         else:
             print('Access denied')
-def main():
-    open_file = open('sec.txt','r')
+def main(): #This part is in charge of taking all invalid logins and their IPs 
+    open_file = open('sec.txt','r') #Getting access to the TXT file 
     lines = open_file.readlines()
     
     ip_list = []
@@ -30,7 +30,7 @@ def main():
     for l in lines:
         
         string = l
-        pattern = 'invalid\suser\s\D+\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+        pattern = 'invalid\suser\s\D+\s\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' #Regex to get just invalid user trying to get access to the VM 
 
         result = re.findall(pattern, string) 
        
@@ -48,10 +48,10 @@ def main():
     
     app_request(duplictaes_remover)
 
-def app_request(file):
+def app_request(file): #Get the location of the IP to send data to the database in mongo atlas 
     for x in file:
         string = str(x)
-        pattern = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+        pattern = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' 
 
         result = re.findall(pattern, string) 
 
